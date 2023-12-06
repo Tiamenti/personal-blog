@@ -27,7 +27,11 @@ class PlatformProvider extends OrchidServiceProvider
             ->addPermission('posts.create', __('Creating'))
             ->addPermission('posts.edit', __('Editing'));
 
+        $moderatorPermissions = ItemPermission::group(__('Moderators'))
+            ->addPermission('moderators', __('Manage moderators'));
+
         $dashboard->registerPermissions($postsPermissions);
+        $dashboard->registerPermissions($moderatorPermissions);
     }
 
     /**
@@ -46,7 +50,7 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Sample Screen')
                 ->icon('bs.collection')
                 ->route('platform.example')
-                ->badge(fn () => 6),
+                ->badge(fn() => 6),
 
             Menu::make('Form Elements')
                 ->icon('bs.card-list')
@@ -92,7 +96,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.box-arrow-up-right')
                 ->url('https://github.com/orchidsoftware/platform/blob/master/CHANGELOG.md')
                 ->target('_blank')
-                ->badge(fn () => Dashboard::version(), Color::DARK),
+                ->badge(fn() => Dashboard::version(), Color::DARK),
         ];
     }
 
