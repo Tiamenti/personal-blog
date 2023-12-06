@@ -23,7 +23,11 @@ class PlatformProvider extends OrchidServiceProvider
     {
         parent::boot($dashboard);
 
-        // ...
+        $postsPermissions = ItemPermission::group(__('Posts'))
+            ->addPermission('posts.create', __('Creating'))
+            ->addPermission('posts.edit', __('Editing'));
+
+        $dashboard->registerPermissions($postsPermissions);
     }
 
     /**

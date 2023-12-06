@@ -83,4 +83,9 @@ class PostCategoryResource extends Resource
             ],
         ];
     }
+
+    public static function permission(): ?string
+    {
+        return 'posts.create';
+    }
 }
