@@ -13,6 +13,11 @@ class PostCategoryResource extends Resource
 {
     public static $model = \App\Models\PostCategory::class;
 
+    public function with(): array
+    {
+        return ['posts'];
+    }
+
     public function fields(): array
     {
         return [
@@ -37,6 +42,8 @@ class PostCategoryResource extends Resource
 
             TD::make('slug', __('Slug')),
 
+            TD::make('posts_count', __('Posts count'))->render(fn($model) => $model->posts->count()),
+
             TD::make('created_at', 'Date of creation'),
         ];
     }
@@ -49,6 +56,11 @@ class PostCategoryResource extends Resource
             Sight::make('name', __('Name')),
 
             Sight::make('slug', __('Slug')),
+
+            Sight::make('posts_count', __('Posts count'))
+                ->render(fn($model) => view('platform.crud.resources.post-category.posts-list', [
+                    'model' => $model,
+                ])),
 
             Sight::make('created_at', 'Date of creation'),
         ];
