@@ -174,4 +174,9 @@ class PostResource extends Resource
 
         return parent::deleteToastMessage();
     }
+
+    public static function icon(): string
+    {
+        return 'bs.file-earmark-font';
+    }
 }

@@ -127,4 +127,9 @@ class ModeratorResource extends Resource
 
         return $model->where('id', 0);
     }
+
+    public static function icon(): string
+    {
+        return 'bs.people';
+    }
 }

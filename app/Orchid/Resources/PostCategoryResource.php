@@ -88,4 +88,9 @@ class PostCategoryResource extends Resource
     {
         return 'posts.create';
     }
+
+    public static function icon(): string
+    {
+        return 'bs.tag';
+    }
 }
