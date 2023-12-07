@@ -86,7 +86,7 @@ class ModeratorResource extends Resource
         $validated = collect($request->validated()['model'])->filter();
         $model->fill($validated->toArray())->save();
 
-        if (!$model->exists) {
+        if ($model->wasRecentlyCreated) {
             $model->addRole($this->role);
         }
     }
