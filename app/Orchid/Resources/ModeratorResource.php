@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Resources;
 
-use App\Models\User;
+use App\Orchid\Traits\I18nButtons;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
@@ -16,6 +16,8 @@ use Orchid\Screen\TD;
 
 class ModeratorResource extends Resource
 {
+    use I18nButtons;
+
     private ?Role $role;
     public static $model = \App\Models\User::class;
 
@@ -53,7 +55,7 @@ class ModeratorResource extends Resource
 
             TD::make('email', __('Email')),
 
-            TD::make('created_at', 'Date of creation'),
+            TD::make('created_at', __('Date of creation')),
         ];
     }
 
@@ -66,7 +68,7 @@ class ModeratorResource extends Resource
 
             Sight::make('email', __('Email')),
 
-            Sight::make('created_at', 'Date of creation'),
+            Sight::make('created_at', __('Date of creation')),
         ];
     }
 
@@ -131,5 +133,15 @@ class ModeratorResource extends Resource
     public static function icon(): string
     {
         return 'bs.people';
+    }
+
+    public static function label(): string
+    {
+        return __('Moderators');
+    }
+
+    public static function singularLabel(): string
+    {
+        return __('Moderator');
     }
 }

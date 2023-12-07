@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Resources;
 
+use App\Orchid\Traits\I18nButtons;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 use Orchid\Crud\Resource;
@@ -11,6 +12,8 @@ use Orchid\Screen\TD;
 
 class PostCategoryResource extends Resource
 {
+    use I18nButtons;
+
     public static $model = \App\Models\PostCategory::class;
 
     public function with(): array
@@ -44,7 +47,7 @@ class PostCategoryResource extends Resource
 
             TD::make('posts_count', __('Posts count'))->render(fn($model) => $model->posts->count()),
 
-            TD::make('created_at', 'Date of creation'),
+            TD::make('created_at', __('Date of creation')),
         ];
     }
 
@@ -57,12 +60,12 @@ class PostCategoryResource extends Resource
 
             Sight::make('slug', __('Slug')),
 
-            Sight::make('posts_count', __('Posts count'))
+            Sight::make('posts', __('Posts'))
                 ->render(fn($model) => view('platform.crud.resources.post-category.posts-list', [
                     'model' => $model,
                 ])),
 
-            Sight::make('created_at', 'Date of creation'),
+            Sight::make('created_at', __('Date of creation')),
         ];
     }
 
@@ -92,5 +95,15 @@ class PostCategoryResource extends Resource
     public static function icon(): string
     {
         return 'bs.tag';
+    }
+
+    public static function label(): string
+    {
+        return __('Categories');
+    }
+
+    public static function singularLabel(): string
+    {
+        return __('Category');
     }
 }

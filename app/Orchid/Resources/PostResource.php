@@ -3,6 +3,7 @@
 namespace App\Orchid\Resources;
 
 use App\Models\PostCategory;
+use App\Orchid\Traits\I18nButtons;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -19,6 +20,8 @@ use Orchid\Screen\TD;
 
 class PostResource extends Resource
 {
+    use I18nButtons;
+
     public static $model = \App\Models\Post::class;
 
     public function with(): array
@@ -67,7 +70,7 @@ class PostResource extends Resource
 
             TD::make('category.name', __('Category')),
 
-            TD::make('created_at', 'Date of creation'),
+            TD::make('created_at', __('Date of creation')),
 
             TD::make('is_published', __('Status'))->render(fn($model) => $this->renderBadge($model)),
         ];
@@ -92,7 +95,7 @@ class PostResource extends Resource
 
             Sight::make('is_published', __('Status'))->render(fn($model) => $this->renderBadge($model)),
 
-            Sight::make('created_at', 'Date of creation'),
+            Sight::make('created_at', __('Date of creation')),
         ];
     }
 
@@ -178,5 +181,15 @@ class PostResource extends Resource
     public static function icon(): string
     {
         return 'bs.file-earmark-font';
+    }
+
+    public static function label(): string
+    {
+        return __('Posts');
+    }
+
+    public static function singularLabel(): string
+    {
+        return __('Post');
     }
 }
