@@ -3,6 +3,9 @@
 namespace App\Orchid\Resources;
 
 use App\Models\PostCategory;
+use App\Orchid\Filters\PerPageFilter;
+use App\Orchid\Filters\Post\CategoryFilter;
+use App\Orchid\Filters\Post\StatusFilter;
 use App\Orchid\Traits\I18nButtons;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -101,7 +104,16 @@ class PostResource extends Resource
 
     public function filters(): array
     {
-        return [];
+        return [
+            CategoryFilter::class,
+            StatusFilter::class,
+            PerPageFilter::class,
+        ];
+    }
+
+    public static function perPage(): int
+    {
+        return request()->input('per_page') ?? parent::perPage();
     }
 
     public function rules(Model $model): array

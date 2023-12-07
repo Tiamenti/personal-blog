@@ -10,8 +10,11 @@
   "Moderators": "Модераторы",
   "Moderator": "Модератор",
   "Image": "Изображение",
+  "All": "Все",
   "Published": "Опубликован",
+  "Draft": "Черновик",
   "No category": "Без категории",
+  "Show records:": "Отображать записей:",
 
   "Get Started": "Начать",
   "Welcome to your Orchid application.": "Добро пожаловать в ваше приложение Orchid."
